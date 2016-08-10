@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Targeted-editing by mapzen-data</title>
+    <title>Targeted Editing</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-dark.css">
@@ -34,6 +34,17 @@
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
 
 <p>Feel free to start by cloning the repo.  Each Targeted Editing post consists of a set of SQL, yaml, and JavaScript.</p>
+
+<p>The following steps, designed for those working locally, outline the basic workflow associated with the queries and maps built for Targeted Editing blog posts.</p>
+
+<ul>
+    <li><b>Develop a Theme: </b><p>This step includes tag research, and metro area choices.</p></li>
+    <li><b>Download Metro Extracts: </b><p>This step employs a script utilizing wget to download multiple Metro Extracts.</p></li>
+    <li><b>Build Databases: </b><p>This step employs a script to build databases locally.</p></li>
+    <li><b>Query Data: </b><p>This step generates basic summary statistics for each metro area.</p></li>
+    <li><b>Customize Tangram Tiles: </b><p>This step customizes Tangram tiles to highlight desired features with custom colors and/or custom labels.</p></li>
+    <li><b>Build Map Interactivity: </b><p>This employs html and JavaScript to link highlighted features to OpenStreetMap editing environments.</p></li>
+</ul>
       </section>
     </div>
     <footer>
