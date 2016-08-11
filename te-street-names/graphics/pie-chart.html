@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Where the streets have no names</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['named or not', 'kilometers'],
+          ['Unnamed Kilometers', 15824],
+          ['Named Kilometers',  10406]
+        ]);
+
+        var options = {
+          title: 'Mexico City, RESIDENTIAL Roads Without Names',
+          colors: ['aqua', 'grey']
+        };
+        
+        var formatter1 = new google.visualization.NumberFormat({pattern:'###,###'});
+        formatter1.format(data, 1);
+        
+        var chart = new google.visualization.PieChart(document.getElementById('road_names_piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+  </head>
+  <body>
+	<div id="road_names_piechart" style="width: 570px; height: 300px;"></div>
+  </body>
+</html>
