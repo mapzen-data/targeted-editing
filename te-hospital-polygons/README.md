@@ -1,13 +1,13 @@
-# te-grocery-stores
-New Year's Resolutions - Grocery POIs
+# te-hospital-polygons
+Targeted Editing - Hospital Polygons
 
-* https://mapzen.com/blog/new-years-resolutions-groceries
+* https://mapzen.com/blog/targeted-editing-hospital-polygons/
 
 ## Parts
 
 * Small map for blog post - [map/embed.html](map/embed.html)
 * Big map - [map/index.html](map/index.html)
-* Scene file (powers the map) - [map/grocery.yaml](map/grocery.yaml#L697-L747)
+* Scene file (powers the map) - [map/hospitals.yaml](map/hospitals.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 
 
@@ -22,3 +22,4 @@ If that doesn't work, try:
     python -m http.server 8000
     
 Then navigate to: [http://localhost:8000](http://localhost:8000)
+
