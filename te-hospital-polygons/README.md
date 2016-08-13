@@ -1,12 +1,12 @@
 # te-hospital-polygons
 Targeted Editing - Hospital Polygons
 
+* https://mapzen-data.github.io/targeted-editing/te-hospital-polygons/map
 * https://mapzen.com/blog/targeted-editing-hospital-polygons/
 
 ## Parts
 
-* Small map for blog post - [map/embed.html](map/embed.html)
-* Big map - [map/index.html](map/index.html)
+* Map - [map/index.html](map/index.html)
 * Scene file (powers the map) - [map/hospitals.yaml](map/hospitals.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 

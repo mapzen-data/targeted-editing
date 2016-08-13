@@ -1,11 +1,12 @@
 # te-stadium-parking
 Targeted Editing - Tailgate Mania (for stadium parking)
+
+* https://mapzen-data.github.io/targeted-editing/te-stadium-parking/map
 * https://mapzen.com/blog/targeted-editing-tailgate-mania
 
 ## Parts
 
-* Small map for blog post - [map/embed.html](map/embed.html)
-* Big map - [map/index.html](map/index.html)
+* Map - [map/index.html](map/index.html)
 * Scene file (powers the map) - [map/stadiums.yaml](stadiums.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 

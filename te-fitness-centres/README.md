@@ -2,13 +2,12 @@
 New Year's Resolutions - Fitness POIs
 
 * https://mapzen-data.github.io/targeted-editing/te-fitness-centres/map
+* https://mapzen.com/blog/new-years-resolutions-fitness/
 
 ## Parts
 
-* Blog post - [index.html](index.html)
-* Small map for blog post - [map/embed.html](map/embed.html)
-* Big map - [map/index.html](map/index.html)
-* Scene file (powers the map) - [map/fitness.yaml](map/fitness.yaml#L698-L747)
+* Map - [map/index.html](map/index.html)
+* Scene file (powers the map) - [map/fitness.yaml](map/fitness.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 
 

@@ -1,13 +1,12 @@
 # te-transit-colours
 Targeted Editing - Transit Colours
 
+* https://mapzen-data.github.io/targeted-editing/te-transit-colours/map
 * https://mapzen.com/blog/targeted-editing-transit-colours/
 
 ## Parts
 
-* Blog post - [index.html](index.html)
-* Small map for blog post - [map/embed.html](map/embed.html)
-* Big map - [map/index.html](map/index.html)
+* Map - [map/index.html](map/index.html)
 * Scene file (powers the map) - [map/transit.yaml](map/transit.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 

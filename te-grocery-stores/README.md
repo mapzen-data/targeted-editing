@@ -1,13 +1,13 @@
 # te-grocery-stores
 New Year's Resolutions - Grocery POIs
 
+* https://mapzen-data.github.io/targeted-editing/te-grocery-stores/map
 * https://mapzen.com/blog/new-years-resolutions-groceries
 
 ## Parts
 
-* Small map for blog post - [map/embed.html](map/embed.html)
-* Big map - [map/index.html](map/index.html)
-* Scene file (powers the map) - [map/grocery.yaml](map/grocery.yaml#L697-L747)
+* Map - [map/index.html](map/index.html)
+* Scene file (powers the map) - [map/grocery.yaml](map/grocery.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 
 
