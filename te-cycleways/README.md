@@ -3,12 +3,17 @@ Targeted Editing - Cycleways
 
 * https://mapzen-data.github.io/targeted-editing/te-cycleways/map
 * https://mapzen.com/blog/targeted-editing-cycleways/
+* https://mapzen.com/blog/targeted-editing-retrospective/
 
 ## Parts
 
 * Map - [map/index.html](map/index.html)
 * Scene file (powers the map) - [map/cycleways.yaml](map/cycleways.yaml)
 * Map interactivity - [map/main.js](map/main.js)
+* Queries
+	* [queries/bicycle_sql.sql](https://github.com/mapzen-data/targeted-editing/blob/gh-pages/queries/bicycle_sql.sql)
+	* [queries/bicycle_sql.sql](https://github.com/mapzen-data/targeted-editing/blob/gh-pages/queries/bicycle_sql.sql) original queries
+	* [queries/new_bicycle_sql.sql](https://github.com/mapzen-data/targeted-editing/blob/gh-pages/queries/new_bicycle_sql.sql)  reporting change since original blog post
 
 
 ### To run locally:

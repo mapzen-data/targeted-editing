@@ -4,6 +4,7 @@ Simple visualization of OpenStreetMap buildings that don't have names to encoura
 
 * https://mapzen-data.github.io/targeted-editing/te-building-names/map
 * https://mapzen.com/blog/targeted-editing-name-that-building/
+* https://mapzen.com/blog/targeted-editing-retrospective/
 
 ## Parts
 
@@ -11,6 +12,8 @@ Simple visualization of OpenStreetMap buildings that don't have names to encoura
 * Scene file (powers the map) - [map/buildings.yaml](map/buildings.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 * Pie chart - [graphics/pie-chart.html](graphics/pie-chart.html)
+* Queries 
+	* [queries/new_apartments_sql.sql](https://github.com/mapzen-data/targeted-editing/blob/gh-pages/queries/new_apartments_sql.sql) reporting change since original blog post.
 
 ### To run locally:
 
