@@ -3,6 +3,7 @@ Simple visualization of OpenStreetMap airports that don't have polygons to encou
 
 * https://mapzen-data.github.io/targeted-editing/te-airport-polygons/map
 * https://mapzen.com/blog/targeted-editing-airport-polygons/
+* https://mapzen.com/blog/targeted-editing-retrospective/
 
 ## Parts
 
@@ -10,6 +11,7 @@ Simple visualization of OpenStreetMap airports that don't have polygons to encou
 * Scene file (powers the map) - [map/airports.yaml](map/airports.yaml)
 * Map interactivity - [map/main.js](map/main.js)
 * Pie chart - [graphics/pie-chart.html](graphics/pie-chart.html)
+* Queries - [queries/new_airports_sql.sql](queries/new_airports_sql.sql) reporting change since original blog post.
 
 ### To run locally:
 
