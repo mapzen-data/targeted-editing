@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Create some hospital polygons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Polygon or Not', 'p_schools'],
+          ['Hospitals without Polygons', 284],
+          ['Hospitals with Polygons',  64]
+        ]);
+
+        var options = {
+          title: 'Los Angeles, Hospital Polygons',
+          colors: ['aqua', 'grey']
+        };
+        
+        var formatter1 = new google.visualization.NumberFormat({pattern:'###,###'});
+        formatter1.format(data, 1);
+        
+        var chart = new google.visualization.PieChart(document.getElementById('hospitals_piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+  </head>
+  <body>
+	<div id="hospitals_piechart" style="width: 570px; height: 300px;"></div>
+  </body>
+</html>
