@@ -1,0 +1,98 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawNARoadChart);
+      function drawNARoadChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Metro', 'Unnamed Motorway', 'Unnamed Primary', 'Unnamed Secondary', 'Unnamed Tertiary', 'Unnamed Residential'],
+          ['Atlanta',0.003,0.002,0.03,0.08,7.9],
+          ['Boston',0.006,0.01,0.2,0.08,3.1],
+          ['Chicago',0.006,0.003,0.007,0.03,1.8],
+          ['DC',0.009,0.01,0.007,0.05,3.6],
+          ['Detroit',0.006,0.0004,0.008,0.03,2.8],
+          ['Houston',0.002,0.03,0.07,0.1,11.5],
+          ['Indianapolis',0.01,0.001,0.03,0.06,4.8],
+          ['Jacksonville',0.02,0.008,0.01,0.07,3.3],
+          ['Los Angeles',0.0009,0.007,0.01,0.04,3.6],
+          ['Mexico City',0.04,0.7,2.2,2.7,37.1],
+          ['Miami',,0.006,0.01,0.06,2.5],
+          ['Minneapolis / Saint Paul',0.007,0.004,0.005,0.08,4.4],
+          ['Montreal',0.007,0.004,0.06,1.7,1.9],
+          ['New Orleans',0,0.001,0.02,0.1,16.3],
+          ['New York',0.006,0.01,0.05,0.09,1.4],
+          ['Phoenix',0.0003,0.008,0.03,0.1,4.9],
+          ['Portland OR',0,0,0.005,0.02,2.7],
+          ['San Diego',0.003,0.003,0.02,0.01,1.4],
+          ['San Francisco',0.0003,0.003,0.02,0.02,1.1],
+          ['Tampa',0,0.06,0.009,0.04,3.4],
+          ['Tucson',0,0,0.002,0.1,8.8],
+          ['Vancouver BC',0,0.003,0.06,0.006,0.2]
+        ]);
+        var options = {
+          title: 'Percent Unnamed by Road Type - North America',
+          hAxis: {slantedText:true, slantedTextAngle:50 },
+          isStacked: true,
+          colors: ['#8dd3c7', '#5a5974', '#bebada', '#fb8072', '#80b1d3'],
+          legend: { textStyle : { fontSize: 12}},
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_divNaRoad'));
+        chart.draw(data, options);
+
+    var columns = [];
+    var series = {};
+    for (var i = 0; i < data.getNumberOfColumns(); i++) {
+        columns.push(i);
+        if (i > 0) {
+            series[i - 1] = {};
+        }
+    }
+    
+    // var options = {
+    //     width: 600,
+    //     height: 400,
+    //     series: series
+    // }
+    
+    google.visualization.events.addListener(chart, 'select', function () {
+        var sel = chart.getSelection();
+        // if selection length is 0, we deselected an element
+        if (sel.length > 0) {
+            // if row is undefined, we clicked on the legend
+            if (sel[0].row === null) {
+                var col = sel[0].column;
+                if (columns[col] == col) {
+                    // hide the data series
+                    columns[col] = {
+                        label: data.getColumnLabel(col),
+                        type: data.getColumnType(col),
+                        calc: function () {
+                            return null;
+                        }
+                    };
+                    
+                    // grey out the legend entry
+                    series[col - 1].color = '#000000';
+                }
+                else {
+                    // show the data series
+                    columns[col] = col;
+                    series[col - 1].color = null;
+                }
+                var view = new google.visualization.DataView(data);
+                view.setColumns(columns);
+                chart.draw(view, options);
+            }
+        }
+    });
+      
+      }
+</script>
+  </head>
+  <body>
+    <div id="chart_divNaRoad" style="width: 900px; height: 500px;"></div>
+
+   
+  </body>
+</html>
