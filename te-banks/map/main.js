@@ -252,10 +252,10 @@ map = (function () {
                                 label += "<span class='labelLine' key="+x+" value="+val+"'>"+x+" : "+val+"</span><br>"
                             }
                         
-                            var mz_layers = JSON.stringify(
-                               selection.feature.layers.reduce((set, val) => { let last=set; val.split(':').forEach(k => { last = last[k] = last[k] || {} }); return set }, {}), 
-                               null, '\t')
-                            label += "<span class='labelLine'>layers : "+mz_layers+"</span><br>";
+                            // var mz_layers = JSON.stringify(
+                            //   selection.feature.layers.reduce((set, val) => { let last=set; val.split(':').forEach(k => { last = last[k] = last[k] || {} }); return set }, {}), 
+                            //   null, '\t')
+                            // label += "<span class='labelLine'>layers : "+mz_layers+"</span><br>";
 
                             if (label != '') {
                                 popup.style.width = '300px'; // 'auto';
