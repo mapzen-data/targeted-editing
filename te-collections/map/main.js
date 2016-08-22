@@ -128,6 +128,7 @@ map = (function () {
                         popup.innerHTML = '<span class="labelInner">' + 'You found a library to enhance!' + '</span><br>';
                     } elseif(scene.selection.feature.property.kind == 'museum') {
                         popup.innerHTML = '<span class="labelInner">' + 'You found a museum to enhance!' + '</span><br>';
+                    }
                       else {
                         popup.innerHTML = '<span class="labelInner">' + 'You found a gallery to enhance!' + '</span><br>';  
                     }  
