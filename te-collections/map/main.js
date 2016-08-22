@@ -126,10 +126,9 @@ map = (function () {
                 {
                     if( scene.selection.feature.properties.kind == 'library' ) {
                         popup.innerHTML = '<span class="labelInner">' + 'You found a library to enhance!' + '</span><br>';
-                    } elseif(scene.selection.feature.property.kind == 'museum') {
+                    } else if(scene.selection.feature.property.kind == 'museum') {
                         popup.innerHTML = '<span class="labelInner">' + 'You found a museum to enhance!' + '</span><br>';
-                    }
-                      else {
+                    } else {
                         popup.innerHTML = '<span class="labelInner">' + 'You found a gallery to enhance!' + '</span><br>';  
                     }  
                     popup.appendChild(createEditLinkElement(url, 'iD', 'Edit with iD ➹'));
