@@ -1,7 +1,7 @@
 # Collections
 Simple visualization of OpenStreetMap galleries, libraries, archives & museums.
 
-* https://mapzen-data.github.io/targeted-editing/te-banks/map
+* https://mapzen-data.github.io/targeted-editing/te-collections/map
 * https://mapzen.com/blog/targeted-editing-collections/
 
 ## Parts
