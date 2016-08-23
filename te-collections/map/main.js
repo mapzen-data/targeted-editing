@@ -1,22 +1,25 @@
 /*jslint browser: true*/
 /*global Tangram */
 var picking = false;
-map = (function () {
-// (function () {
+map = (function() {
+    // (function () {
     // 'use strict';
 
     // defaults
-    var map_start_location = [41.8784,-87.6351, 14]; // lon/lat for area in Chicago at zoom 14
+    var map_start_location = [41.8784, -87.6351, 14]; // lon/lat for area in Chicago at zoom 14
     var style_file = 'collections.yaml';
 
     /*** URL parsing ***/
 
     // convert tile coordinates to lat-lng
     // from http://gis.stackexchange.com/questions/17278/calculate-lat-lon-bounds-for-individual-tile-generated-from-gdal2tiles
-    function tile2long(x,z) { return (x/Math.pow(2,z)*360-180); }
-    function tile2lat(y,z) {
-        var n=Math.PI-2*Math.PI*y/Math.pow(2,z);
-        return (180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n))));
+    function tile2long(x, z) {
+        return (x / Math.pow(2, z) * 360 - 180);
+    }
+
+    function tile2lat(y, z) {
+        var n = Math.PI - 2 * Math.PI * y / Math.pow(2, z);
+        return (180 / Math.PI * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n))));
     }
 
     // leaflet-style URL hash pattern:
@@ -25,7 +28,7 @@ map = (function () {
 
     // location
     var defaultpos = true; // use default position
-    
+
     // location is passed through url
     if (url_hash.length == 3) {
         var defaultpos = false;
@@ -33,9 +36,8 @@ map = (function () {
             // example: http://localhost:9001/#15/5242/12663
             // add .5 to coords to center tile on screen
             map_start_location = [tile2lat(parseFloat(url_hash[2]) + .5, url_hash[0]), tile2long(parseFloat(url_hash[1]) + .5, url_hash[0]), url_hash[0]];
-        }
-        else { // parse hash as lat/lng coordinates
-            map_start_location = [url_hash[1],url_hash[2], url_hash[0]];
+        } else { // parse hash as lat/lng coordinates
+            map_start_location = [url_hash[1], url_hash[2], url_hash[0]];
             // convert from strings
             map_start_location = map_start_location.map(Number);
         }
@@ -51,9 +53,10 @@ map = (function () {
 
     /*** Map ***/
 
-    var map = L.map('map',
-        {"keyboardZoomOffset" : .05, "scrollWheelZoom": false }
-    );
+    var map = L.map('map', {
+        "keyboardZoomOffset": .05,
+        "scrollWheelZoom": false
+    });
     map.setView(map_start_location.slice(0, 2), map_start_location[2]);
 
     var layer = Tangram.leafletLayer({
@@ -93,19 +96,22 @@ map = (function () {
     }
 
     // Feature selection
-    function initFeatureSelection () {
-        map.getContainer().addEventListener('mousemove', function (event) {
+    function initFeatureSelection() {
+        map.getContainer().addEventListener('mousemove', function(event) {
             picking = true;
             latlng = map.mouseEventToLatLng(event);
 
-            var pixel = { x: event.clientX, y: event.clientY };
+            var pixel = {
+                x: event.clientX,
+                y: event.clientY
+            };
 
             scene.getFeatureAt(pixel).then(function(selection) {
                 if (!selection || selection.feature == null || selection.feature.properties == null) {
                     picking = false;
                     popup.style.visibility = 'hidden';
                     return;
-                }                
+                }
                 var properties = selection.feature.properties;
 
                 var url = 'https://www.openstreetmap.org/edit?';
@@ -115,40 +121,46 @@ map = (function () {
                     url += 'node=' + properties.id + '#map=' + position;
                 }
 
-                var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
+                var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map=' + position;
 
                 popup.style.width = 'auto';
                 popup.style.left = (pixel.x + 0) + 'px';
                 popup.style.top = (pixel.y + 0) + 'px';
                 var mz_kind = '';
-                
-                if ( scene.selection.feature.properties.kind == 'libary' || scene.selection.feature.properties.kind == 'museum' || scene.selection.feature.properties.kind == 'art_gallery' )
-                {
-                    if( scene.selection.feature.properties.kind == 'library' ) {
-                        popup.innerHTML = '<span class="labelInner">' + 'You found a library to enhance!' + '</span><br>';
-                    } else if(scene.selection.feature.property.kind == 'museum') {
-                        popup.innerHTML = '<span class="labelInner">' + 'You found a museum to enhance!' + '</span><br>';
-                    } else {
-                        popup.innerHTML = '<span class="labelInner">' + 'You found a gallery to enhance!' + '</span><br>';  
-                    }  
-                    popup.appendChild(createEditLinkElement(url, 'iD', 'Edit with iD ➹'));
-                    popup.appendChild(createEditLinkElement(josmUrl, 'JOSM', 'Edit with JOSM ➹'));
+
+
+                if (scene.selection.feature.properties.kind == 'library') {
+                    mz_kind = 'library'
                     popup.style.visibility = 'visible';
-                } else {
-                    popup.style.visibility = 'hidden';
                 }
+                if (scene.selection.feature.properties.kind == 'museum') {
+                    mz_kind = 'museum'
+                    popup.style.visibility = 'visible';
+                }
+                if (scene.selection.feature.properties.kind == 'art_gallery') {
+                    mz_kind = 'art gallery'
+                    popup.style.visibility = 'visible';
+                }
+                popup.innerHTML = '<span class="labelInner">' + 'You found a ' + mz_kind + ' to enhance!' + '</span><br>';
+                popup.appendChild(createEditLinkElement(url, 'iD', 'Edit with iD ➹'));
+                popup.appendChild(createEditLinkElement(josmUrl, 'JOSM', 'Edit with JOSM ➹'));
             });
+        });
+
+        map.getContainer().addEventListener('mousedown', function(event) {
+            info.style.visibility = 'hidden';
+            popup.style.visibility = 'hidden';
         });
     }
 
-    function createEditLinkElement (url, type, label) {
+    function createEditLinkElement(url, type, label) {
         var el = document.createElement('div');
         var anchor = document.createElement('a');
         el.className = 'labelInner';
         anchor.href = url;
         anchor.target = '_blank';
         anchor.textContent = label;
-        anchor.addEventListener('click', function (event) {
+        anchor.addEventListener('click', function(event) {
             trackOutboundLink(url, 'editing_collection_features', type);
         }, false);
         el.appendChild(anchor);
@@ -156,24 +168,29 @@ map = (function () {
     }
 
     /**
-    * Function that tracks a click on an outbound link in Google Analytics.
-    * This function takes a valid URL string as an argument, and uses that URL string
-    * as the event label. Setting the transport method to 'beacon' lets the hit be sent
-    * using 'navigator.sendBeacon' in browser that support it.
-    */
-    function trackOutboundLink (url, post_name, editor) {
-       // ga('send', 'event', [eventCategory], [eventAction], [eventLabel], [eventValue], [fieldsObject]);
-       ga('send', 'event', 'outbound', post_name, url, {
-         'transport': 'beacon',
-         // If opening a link in the current window, this opens the url AFTER
-         // registering the hit with Analytics. Disabled because here want the
-         // link to open in a new window, so this hit can occur in the current tab.
-         //'hitCallback': function(){document.location = url;}
-       });
+     * Function that tracks a click on an outbound link in Google Analytics.
+     * This function takes a valid URL string as an argument, and uses that URL string
+     * as the event label. Setting the transport method to 'beacon' lets the hit be sent
+     * using 'navigator.sendBeacon' in browser that support it.
+     */
+    function trackOutboundLink(url, post_name, editor) {
+        // ga('send', 'event', [eventCategory], [eventAction], [eventLabel], [eventValue], [fieldsObject]);
+        ga('send', 'event', 'outbound', post_name, url, {
+            'transport': 'beacon',
+            // If opening a link in the current window, this opens the url AFTER
+            // registering the hit with Analytics. Disabled because here want the
+            // link to open in a new window, so this hit can occur in the current tab.
+            //'hitCallback': function(){document.location = url;}
+        });
     }
 
-    function long2tile(lon,zoom) { return (Math.floor((lon+180)/360*Math.pow(2,zoom))); }
-    function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }    
+    function long2tile(lon, zoom) {
+        return (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));
+    }
+
+    function lat2tile(lat, zoom) {
+        return (Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)));
+    }
 
     function mapzenTileURL() {
         // find minimum max_zoom of all sources
@@ -186,34 +203,47 @@ map = (function () {
             }
         }
         var zoom = max_zoom < map.getZoom() ? max_zoom : Math.floor(map.getZoom());
-        var tileCoords = { x : long2tile(latlng.lng,zoom), y: lat2tile(latlng.lat,zoom), z: zoom };
+        var tileCoords = {
+            x: long2tile(latlng.lng, zoom),
+            y: lat2tile(latlng.lat, zoom),
+            z: zoom
+        };
 
-        var url = 'http://vector.mapzen.com/osm/all/' + zoom + '/' + tileCoords.x  + '/' + tileCoords.y + '.topojson?api_key=vector-tiles-nCLqazK';
+        var url = 'http://vector.mapzen.com/osm/all/' + zoom + '/' + tileCoords.x + '/' + tileCoords.y + '.topojson?api_key=vector-tiles-nCLqazK';
         return url;
     }
 
     /***** Render loop *****/
-    
+
     function addGUI() {
         // Link to edit in OSM - hold 'e' and click
-        map.getContainer().addEventListener('dblclick', function (event) {
+        map.getContainer().addEventListener('dblclick', function(event) {
             //console.log( 'dblclick was had' );
-            if( timer ) { clearTimeout( timer ); timer = null; }
+            if (timer) {
+                clearTimeout(timer);
+                timer = null;
+            }
             popup.style.visibility = 'hidden';
         });
-        
+
         var timer;
-        
-        map.getContainer().addEventListener('click', function (event) {
+
+        map.getContainer().addEventListener('click', function(event) {
             //console.log( 'click was had' );
-            if( timer ) { clearTimeout( timer ); timer = null; }
-            timer = setTimeout( function(){ 
+            if (timer) {
+                clearTimeout(timer);
+                timer = null;
+            }
+            timer = setTimeout(function() {
                 picking = true;
                 latlng = map.mouseEventToLatLng(event);
-                var pixel = { x: event.clientX, y: event.clientY };
-            
-                if( key.cmd || key.alt ) {
-                    window.open( mapzenTileURL(), '_blank' );
+                var pixel = {
+                    x: event.clientX,
+                    y: event.clientY
+                };
+
+                if (key.cmd || key.alt) {
+                    window.open(mapzenTileURL(), '_blank');
                 } else {
                     var url = 'https://www.openstreetmap.org/edit?';
                     scene.getFeatureAt(pixel).then(function(selection) {
@@ -226,23 +256,23 @@ map = (function () {
                         // enable iD to show properties sidebar for selected feature
                         osm_type = 'node';
                         osm_zoom = '19'
-                        if( selection.feature.properties.sort_key ) {
+                        if (selection.feature.properties.sort_key) {
                             osm_type = 'way';
-                            osm_zoom = Math.max( 17, map.getZoom() );
+                            osm_zoom = Math.max(17, map.getZoom());
                         }
                         osm_id = selection.feature.properties.id;
-                        if( osm_id < 0 ) {
+                        if (osm_id < 0) {
                             osm_type = 'relation'
-                            osm_id = Math.abs( osm_id );
-                            osm_zoom = Math.max( 16, map.getZoom() );
+                            osm_id = Math.abs(osm_id);
+                            osm_zoom = Math.max(16, map.getZoom());
                         }
                         url += osm_type + '=' + osm_id;
                         // and position the map so it's at a similar zoom to Tangram
                         if (latlng) {
                             url += '#map=' + osm_zoom + '/' + latlng.lat + '/' + latlng.lng;
                         }
-    
-                        if( key.shift ) {
+
+                        if (key.shift) {
                             window.open(url, '_blank');
                         } else {
                             var properties = selection.feature.properties;
@@ -251,9 +281,9 @@ map = (function () {
                             //console.log(properties);
                             for (var x in properties) {
                                 var val = properties[x]
-                                label += "<span class='labelLine' key="+x+" value="+val+"'>"+x+" : "+val+"</span><br>"
+                                label += "<span class='labelLine' key=" + x + " value=" + val + "'>" + x + " : " + val + "</span><br>"
                             }
-                        
+
                             // var mz_layers = JSON.stringify(
                             //   selection.feature.layers.reduce((set, val) => { let last=set; val.split(':').forEach(k => { last = last[k] = last[k] || {} }); return set }, {}), 
                             //   null, '\t')
@@ -269,36 +299,36 @@ map = (function () {
 
                             // JOSM editor link
                             var position = '19' + '/' + latlng.lat + '/' + latlng.lng;
-                            var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map='+position;
-    
-                            popup.appendChild(createEditLinkElement( url, 'iD', 'Edit with iD ➹') );
+                            var josmUrl = 'http://www.openstreetmap.org/edit?editor=remote#map=' + position;
+
+                            popup.appendChild(createEditLinkElement(url, 'iD', 'Edit with iD ➹'));
                             //popup.appendChild(createEditLinkElement( mapzenTileURL(), 'rawTile', 'View tile data ➹') );
-                            popup.appendChild(createEditLinkElement( josmUrl, 'JOSM', 'Edit with JOSM ➹') );
+                            popup.appendChild(createEditLinkElement(josmUrl, 'JOSM', 'Edit with JOSM ➹'));
                             popup.style.visibility = 'visible';
                         }
                     });
                 }
                 timer = null;
-            }, 200 );
+            }, 200);
         });
     }
 
-    function inIframe () {
+    function inIframe() {
         try {
             return window.self !== window.top;
         } catch (e) {
             return true;
         }
     }
-    
+
     // Add map
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
         // Scene initialized
         layer.on('init', function() {
             var camera = scene.config.cameras[scene.getActiveCamera()];
             // if a camera position is set in the scene file, use that
-            if (defaultpos && typeof camera.position != "undefined") {
-                map_start_location = [camera.position[1], camera.position[0], camera.position[2]]
+            if (defaultpos && typeof scene.camera.position != "undefined") {
+                map_start_location = [scene.camera.position[1], scene.camera.position[0], scene.camera.position[2]]
             }
             map.setView([map_start_location[0], map_start_location[1]], map_start_location[2]);
         });

@@ -701,6 +701,7 @@ layers:
             draw:
                 icons:
                     sprite: library
+                    interactive: true
                     order: 1002
                     color: aqua
                 text:
@@ -711,6 +712,7 @@ layers:
             draw:
                 icons:
                     sprite: museum
+                    interactive: true
                     order: 1004
                     color: aqua
                 text:
