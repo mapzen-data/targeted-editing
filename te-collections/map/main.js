@@ -6,7 +6,7 @@ map = (function () {
     // 'use strict';
 
     // defaults
-    var map_start_location = [37.5253, 127.0322, 16]; // lon/lat for area in Seoul at zoom 16
+    var map_start_location = [41.8784,-87.6351, 14]; // lon/lat for area in Chicago at zoom 14
     var style_file = 'collections.yaml';
 
     /*** URL parsing ***/
