@@ -700,8 +700,9 @@ layers:
             filter: { kind: library }
             draw:
                 icons:
-                    sprite: atm
+                    sprite: library
                     order: 1002
+                    color: aqua
                 text:
                     order: 1003
 
@@ -711,6 +712,7 @@ layers:
                 icons:
                     sprite: museum
                     order: 1004
+                    color: aqua
                 text:
                     order: 1005
 
