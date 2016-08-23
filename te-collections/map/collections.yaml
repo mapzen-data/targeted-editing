@@ -391,7 +391,7 @@ textures:
 sources:
     osm:
         type: TopoJSON #GeoJSON, MVT, TopoJSON
-        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-oniNEMq
+        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-nCLqazK
         max_zoom: 16
 
 camera:
