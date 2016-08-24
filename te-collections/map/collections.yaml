@@ -672,11 +672,11 @@ layers:
         data: { source: osm, layer: [pois] }
         filter: 
             all:
-                - kind: [art_gallery, library, museum]
+                - kind: [art_gallery, art-gallery, artwork, library, museum]
         draw:
             icons:
                 size: [[13, 12px], [16, 16px], [19, 20px]]
-                sprite: art_gallery
+                sprite: art-gallery
                 interactive: true
                 order: 1000
                 color: aqua
