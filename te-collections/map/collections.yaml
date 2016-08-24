@@ -672,7 +672,7 @@ layers:
         data: { source: osm, layer: [pois] }
         filter: 
             all:
-                - kind: [art_gallery, art-gallery, artwork, library, museum]
+                - kind: [art_gallery, art-gallery, library, museum]
         draw:
             icons:
                 size: [[13, 12px], [16, 16px], [19, 20px]]
