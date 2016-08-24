@@ -48,6 +48,45 @@ insert into collections (query_name, value) values ('art_gallery_polygons_with_w
 insert into collections (query_name, value) values ('art_gallery_polygons_with_fee', (select count(*) from planet_osm_polygon where ((tourism in ('gallery', 'art_gallery', 'Art Gallery', 'Art_gallery') or amenity in ('gallery', 'art_gallery', 'arts_gallery', 'contemporary_art_gallery') or (tags ? 'gallery') or building in ('gallery', 'art_gallery')) and (osm_id > 0 and (tags ? 'fee')))));
 
 
+  -- gallery totals
+-- Total galleries?
+insert into collections (query_name, value) values ('art_gallery_total', (select sum(value) from collections where query_name = 'art_gallery_points' or query_name = 'art_gallery_polygons'));
+
+-- Total galleries with addresses?
+insert into collections (query_name, value) values ('art_gallery_with_address_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_housenumber' or query_name = 'art_gallery_polygons_with_housenumber'));
+
+-- Total galleries with website?
+insert into collections (query_name, value) values ('art_gallery_with_website_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_website' or query_name = 'art_gallery_polygons_with_website'));
+
+-- Total galleries with phone number?
+insert into collections (query_name, value) values ('art_gallery_with_phone_number_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_phone_number' or query_name = 'art_gallery_polygons_with_phone_number'));
+
+-- Total galleries with hours?
+insert into collections (query_name, value) values ('art_gallery_with_hours_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_hours' or query_name = 'art_gallery_polygons_with_hours'));
+
+-- Total galleries with accessibility information?
+insert into collections (query_name, value) values ('art_gallery_with_wheelchair_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_wheelchair' or query_name = 'art_gallery_polygons_with_wheelchair'));
+
+-- Total galleries with fee information?
+insert into collections (query_name, value) values ('art_gallery_with_fee_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_fee' or query_name = 'art_gallery_polygons_with_fee'));
+
+-- Percent galleries with address?
+insert into collections (query_name, value) values ('art_gallery_with_address_pct', (((select value from collections where query_name = 'art_gallery_with_address_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
+
+-- Percent galleries with website?
+insert into collections (query_name, value) values ('art_gallery_with_website_pct', (((select value from collections where query_name = 'art_gallery_with_website_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
+  
+-- Percent galleries with phone?
+insert into collections (query_name, value) values ('art_gallery_with_phone_pct', (((select value from collections where query_name = 'art_gallery_with_phone_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
+
+-- Percent galleries with hours?
+insert into collections (query_name, value) values ('art_gallery_with_hours_pct', (((select value from collections where query_name = 'art_gallery_with_hours_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
+
+-- Percent galleries with accessibility information?
+insert into collections (query_name, value) values ('art_gallery_with_wheelchair_pct', (((select value from collections where query_name = 'art_gallery_with_wheelchair_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
+
+-- Percent galleries with fee information?
+insert into collections (query_name, value) values ('art_gallery_with_fee_pct', (((select value from collections where query_name = 'art_gallery_with_fee_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
 
 -- QUERIES FOR LIBRARIES
 
@@ -96,6 +135,46 @@ insert into collections (query_name, value) values ('library_polygons_with_wheel
 -- How many library polygons have fee information?
 insert into collections (query_name, value) values ('library_polygons_with_fee', (select count(*) from planet_osm_polygon where ((amenity = 'library' or building = 'library' or tags ? 'library') and (osm_id > 0 and (tags ? 'fee')))));
 
+  -- library totals
+-- Total libraries?
+insert into collections (query_name, value) values ('library_total', (select sum(value) from collections where query_name = 'library_points' or query_name = 'library_polygons'));
+
+-- Total libraries with addresses?
+insert into collections (query_name, value) values ('library_with_address_total', (select sum(value) from collections where query_name = 'library_points_with_housenumber' or query_name = 'library_polygons_with_housenumber'));
+
+-- Total libraries with website?
+insert into collections (query_name, value) values ('library_with_website_total', (select sum(value) from collections where query_name = 'library_points_with_website' or query_name = 'library_polygons_with_website'));
+
+-- Total libraries with phone number?
+insert into collections (query_name, value) values ('library_with_phone_number_total', (select sum(value) from collections where query_name = 'library_points_with_phone_number' or query_name = 'library_polygons_with_phone_number'));
+
+-- Total libraries with hours?
+insert into collections (query_name, value) values ('library_with_hours_total', (select sum(value) from collections where query_name = 'library_points_with_hours' or query_name = 'library_polygons_with_hours'));
+
+-- Total libraries with accessibility information?
+insert into collections (query_name, value) values ('library_with_wheelchair_total', (select sum(value) from collections where query_name = 'library_points_with_wheelchair' or query_name = 'library_polygons_with_wheelchair'));
+
+-- Total libraries with fee information?
+insert into collections (query_name, value) values ('library_with_fee_total', (select sum(value) from collections where query_name = 'library_points_with_fee' or query_name = 'library_polygons_with_fee'));
+
+-- Percent libraries with address?
+insert into collections (query_name, value) values ('library_with_address_pct', (((select value from collections where query_name = 'library_with_address_total')/(select value from collections where query_name = 'library_total')) *100));
+
+-- Percent libraries with website?
+insert into collections (query_name, value) values ('library_with_website_pct', (((select value from collections where query_name = 'library_with_website_total')/(select value from collections where query_name = 'library_total')) *100));
+  
+-- Percent libraries with phone?
+insert into collections (query_name, value) values ('library_with_phone_pct', (((select value from collections where query_name = 'library_with_phone_total')/(select value from collections where query_name = 'library_total')) *100));
+
+-- Percent libraries with hours?
+insert into collections (query_name, value) values ('library_with_hours_pct', (((select value from collections where query_name = 'library_with_hours_total')/(select value from collections where query_name = 'library_total')) *100));
+
+-- Percent libraries with accessibility information?
+insert into collections (query_name, value) values ('library_with_wheelchair_pct', (((select value from collections where query_name = 'library_with_wheelchair_total')/(select value from collections where query_name = 'library_total')) *100));
+
+-- Percent libraries with fee information?
+insert into collections (query_name, value) values ('library_with_fee_pct', (((select value from collections where query_name = 'library_with_fee_total')/(select value from collections where query_name = 'library_total')) *100));
+
 -- QUERIES FOR MUSEUMS 
 
   -- museum points
@@ -141,6 +220,46 @@ insert into collections (query_name, value) values ('museum_polygons_with_wheelc
 
 -- How many museum polygons have fee information?
 insert into collections (query_name, value) values ('museum_polygons_with_fee', (select count(*) from planet_osm_polygon where ((tourism = 'museum' or amenity = 'museum' or building = 'museum' or (tags ? 'museum' and tags -> 'museum' != 'gallery')) and (osm_id > 0 and (tags ? 'fee')))));
+
+  -- museum totals
+-- Total museums?
+insert into collections (query_name, value) values ('museum_total', (select sum(value) from collections where query_name = 'museum_points' or query_name = 'museum_polygons'));
+
+-- Total museums with addresses?
+insert into collections (query_name, value) values ('museum_with_address_total', (select sum(value) from collections where query_name = 'museum_points_with_housenumber' or query_name = 'museum_polygons_with_housenumber'));
+
+-- Total museums with website?
+insert into collections (query_name, value) values ('museum_with_website_total', (select sum(value) from collections where query_name = 'museum_points_with_website' or query_name = 'museum_polygons_with_website'));
+
+-- Total museums with phone number?
+insert into collections (query_name, value) values ('museum_with_phone_number_total', (select sum(value) from collections where query_name = 'museum_points_with_phone_number' or query_name = 'museum_polygons_with_phone_number'));
+
+-- Total museums with hours?
+insert into collections (query_name, value) values ('museum_with_hours_total', (select sum(value) from collections where query_name = 'museum_points_with_hours' or query_name = 'museum_polygons_with_hours'));
+
+-- Total museums with accessibility information?
+insert into collections (query_name, value) values ('museum_with_wheelchair_total', (select sum(value) from collections where query_name = 'museum_points_with_wheelchair' or query_name = 'museum_polygons_with_wheelchair'));
+
+-- Total museums with fee information?
+insert into collections (query_name, value) values ('museum_with_fee_total', (select sum(value) from collections where query_name = 'museum_points_with_fee' or query_name = 'museum_polygons_with_fee'));
+
+-- Percent museums with address?
+insert into collections (query_name, value) values ('museum_with_address_pct', (((select value from collections where query_name = 'museum_with_address_total')/(select value from collections where query_name = 'museum_total')) *100));
+
+-- Percent museums with website?
+insert into collections (query_name, value) values ('museum_with_website_pct', (((select value from collections where query_name = 'museum_with_website_total')/(select value from collections where query_name = 'museum_total')) *100));
+  
+-- Percent museums with phone?
+insert into collections (query_name, value) values ('museum_with_phone_pct', (((select value from collections where query_name = 'museum_with_phone_total')/(select value from collections where query_name = 'museum_total')) *100));
+
+-- Percent museums with hours?
+insert into collections (query_name, value) values ('museum_with_hours_pct', (((select value from collections where query_name = 'museum_with_hours_total')/(select value from collections where query_name = 'museum_total')) *100));
+
+-- Percent museums with accessibility information?
+insert into collections (query_name, value) values ('museum_with_wheelchair_pct', (((select value from collections where query_name = 'museum_with_wheelchair_total')/(select value from collections where query_name = 'museum_total')) *100));
+
+-- Percent museums with fee information?
+insert into collections (query_name, value) values ('museum_with_fee_pct', (((select value from collections where query_name = 'museum_with_fee_total')/(select value from collections where query_name = 'museum_total')) *100));
 
 select * from collections;
 
