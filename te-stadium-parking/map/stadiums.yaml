@@ -631,10 +631,53 @@ styles:
                 filter: |
                     color.rgb -= grain(gl_FragCoord.xy)*0.2;
 
+    lines_transparent:
+        base: lines
+        blend: overlay
+    outline_transparent:
+        base: lines
+        blend: overlay
+    polygons_transparent:
+        base: polygons
+        blend: overlay
     icons:
         base: points
         texture: pois
         interactive: true
+        blend_order: 1
+    text-blend-order:
+        base: text
+        blend_order: 1
+    ui-lines-overlay:
+        base: lines
+        blend: overlay
+        blend_order: 0
+    ui-location-gem-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+        blend_order: 2
+    ui-icons-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+        blend_order: 3
+    sdk-point-overlay:
+        base: points
+        texture: pois
+        interactive: true
+        blend: overlay
+        blend_order: 3
+    sdk-line-overlay:
+        base: lines
+        blend: overlay
+        blend_order: 0
+    sdk-polygon-overlay:
+        base: polygons
+        blend: overlay
+        blend_order: 0
 
 scene:
     background:
