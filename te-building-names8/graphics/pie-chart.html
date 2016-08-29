@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Create some airport polygons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['named or not', 'res_buildings'],
+          ['Unnamed Residential & Apartment Buildings', 1216],
+          ['Named Residential & Apartment Buildings', 1725]
+        ]);
+
+        var options = {
+          title: 'Hong Kong, RESIDENTIAL & APARTMENT Buildings Without Names',
+          colors: ['aqua', 'grey']
+        };
+        
+        var formatter1 = new google.visualization.NumberFormat({pattern:'###,###'});
+        formatter1.format(data, 1);
+        
+        var chart = new google.visualization.PieChart(document.getElementById('res_building_name_piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    
+  </head>
+  <body>
+	<div id="res_building_name_piechart" style="width: 570px; height: 300px;"></div>
+  </body>
+</html>
