@@ -72,7 +72,7 @@ layers:
             polygons:
                 interactive: true
                 color: '#cbbbd7'
-                order: 100
+                order: 10
     parking-landuse-aois-good:
         data: { source: osm, layer: [landuse] }
         filter:
@@ -84,7 +84,7 @@ layers:
             polygons:
                 interactive: true
                 color: '#cbbbd7'
-                order: 130
+                order: 13
     parking_aisle-lines-good:
         data: { source: osm, layer: [roads] }
         filter:
@@ -95,11 +95,11 @@ layers:
 #                - landuse_kind: [stadium,parking]
         draw:
             lines:
-                order: 430
+                order: 43
                 color: [[0,*service_road2],[18,*service_road2]]
                 width: [[13,0.5px],[15, 1px], [16, 1.5px], [18, 4m], [19, 4.5m]]
                 outline:
-                    order: 420
+                    order: 42
                     color: '#b085d7'
                     width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 1.75px]]
     stadium-buildings-good:
@@ -114,7 +114,7 @@ layers:
                 #extrude: function() { return feature.height || 20; }
             outline:
                 style: lines
-                order: 500
+                order: 50
                 color: '#d534df'
                 width: [[14,0.1px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
                 #extrude: function() { return feature.height || 20; }
@@ -133,7 +133,7 @@ layers:
                 #extrude: function() { return feature.height || 20; }
             outline:
                 style: lines
-                order: 500
+                order: 50
                 color: '#df9c34'
                 width: [[14,0.1px],[15,0.5px],[16,1.25px],[17,2.0px],[18,2.5px],[19,2m]]
                 #extrude: function() { return feature.height || 20; }
@@ -143,7 +143,9 @@ layers:
         data: { source: route }
         draw:
             ui-lines-overlay:
-                color: '#06a6d4'
+                color: 'purple'
+                order: 50
+                width: [[0,2.5px],[8,3px],[9,3.5px],[10,4px],[11,5px],[16,8m]]
     mz_current_location_gem:
         visible: false
     current_location_gem:
