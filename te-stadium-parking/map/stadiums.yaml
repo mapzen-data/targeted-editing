@@ -25,7 +25,7 @@ labels-global:
 
 zinc-light-gray-colors:
     roads:
-        - &service_road2
+        - &service_road2              '#bbb'
 sources:
     osm:
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-loxxPrQ
