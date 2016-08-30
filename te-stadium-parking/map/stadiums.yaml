@@ -28,9 +28,8 @@ sources:
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-loxxPrQ
 
 layers:
-    mz_route_line:
-        visible: false
-    # Special overlay for Targeted Editing seris
+
+    # Special overlay for Targeted Editing stadium parking post
     stadiums:
         data: { source: osm, layer: [pois,landuse,buildings] }
         filter: 
@@ -97,7 +96,7 @@ layers:
         draw:
             lines:
                 order: 430
-                color: '#817f83'
+                color: [[0,*service_road2],[18,*service_road2]]
                 width: [[13,0.5px],[15, 1px], [16, 1.5px], [18, 4m], [19, 4.5m]]
                 outline:
                     order: 420
