@@ -59,7 +59,7 @@ insert into collections (query_name, value) values ('art_gallery_with_address_to
 insert into collections (query_name, value) values ('art_gallery_with_website_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_website' or query_name = 'art_gallery_polygons_with_website'));
 
 -- Total galleries with phone number?
-insert into collections (query_name, value) values ('art_gallery_with_phone_number_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_phone_number' or query_name = 'art_gallery_polygons_with_phone_number'));
+insert into collections (query_name, value) values ('art_gallery_with_phone_number_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_phone' or query_name = 'art_gallery_polygons_with_phone'));
 
 -- Total galleries with hours?
 insert into collections (query_name, value) values ('art_gallery_with_hours_total', (select sum(value) from collections where query_name = 'art_gallery_points_with_hours' or query_name = 'art_gallery_polygons_with_hours'));
@@ -77,7 +77,7 @@ insert into collections (query_name, value) values ('art_gallery_with_address_pc
 insert into collections (query_name, value) values ('art_gallery_with_website_pct', (((select value from collections where query_name = 'art_gallery_with_website_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
   
 -- Percent galleries with phone?
-insert into collections (query_name, value) values ('art_gallery_with_phone_pct', (((select value from collections where query_name = 'art_gallery_with_phone_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
+insert into collections (query_name, value) values ('art_gallery_with_phone_pct', (((select value from collections where query_name = 'art_gallery_with_phone_number_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
 
 -- Percent galleries with hours?
 insert into collections (query_name, value) values ('art_gallery_with_hours_pct', (((select value from collections where query_name = 'art_gallery_with_hours_total')/(select value from collections where query_name = 'art_gallery_total')) *100));
@@ -146,7 +146,7 @@ insert into collections (query_name, value) values ('library_with_address_total'
 insert into collections (query_name, value) values ('library_with_website_total', (select sum(value) from collections where query_name = 'library_points_with_website' or query_name = 'library_polygons_with_website'));
 
 -- Total libraries with phone number?
-insert into collections (query_name, value) values ('library_with_phone_number_total', (select sum(value) from collections where query_name = 'library_points_with_phone_number' or query_name = 'library_polygons_with_phone_number'));
+insert into collections (query_name, value) values ('library_with_phone_number_total', (select sum(value) from collections where query_name = 'library_points_with_phone' or query_name = 'library_polygons_with_phone'));
 
 -- Total libraries with hours?
 insert into collections (query_name, value) values ('library_with_hours_total', (select sum(value) from collections where query_name = 'library_points_with_hours' or query_name = 'library_polygons_with_hours'));
@@ -164,7 +164,7 @@ insert into collections (query_name, value) values ('library_with_address_pct', 
 insert into collections (query_name, value) values ('library_with_website_pct', (((select value from collections where query_name = 'library_with_website_total')/(select value from collections where query_name = 'library_total')) *100));
   
 -- Percent libraries with phone?
-insert into collections (query_name, value) values ('library_with_phone_pct', (((select value from collections where query_name = 'library_with_phone_total')/(select value from collections where query_name = 'library_total')) *100));
+insert into collections (query_name, value) values ('library_with_phone_pct', (((select value from collections where query_name = 'library_with_phone_number_total')/(select value from collections where query_name = 'library_total')) *100));
 
 -- Percent libraries with hours?
 insert into collections (query_name, value) values ('library_with_hours_pct', (((select value from collections where query_name = 'library_with_hours_total')/(select value from collections where query_name = 'library_total')) *100));
@@ -232,7 +232,7 @@ insert into collections (query_name, value) values ('museum_with_address_total',
 insert into collections (query_name, value) values ('museum_with_website_total', (select sum(value) from collections where query_name = 'museum_points_with_website' or query_name = 'museum_polygons_with_website'));
 
 -- Total museums with phone number?
-insert into collections (query_name, value) values ('museum_with_phone_number_total', (select sum(value) from collections where query_name = 'museum_points_with_phone_number' or query_name = 'museum_polygons_with_phone_number'));
+insert into collections (query_name, value) values ('museum_with_phone_number_total', (select sum(value) from collections where query_name = 'museum_points_with_phone' or query_name = 'museum_polygons_with_phone'));
 
 -- Total museums with hours?
 insert into collections (query_name, value) values ('museum_with_hours_total', (select sum(value) from collections where query_name = 'museum_points_with_hours' or query_name = 'museum_polygons_with_hours'));
@@ -250,7 +250,7 @@ insert into collections (query_name, value) values ('museum_with_address_pct', (
 insert into collections (query_name, value) values ('museum_with_website_pct', (((select value from collections where query_name = 'museum_with_website_total')/(select value from collections where query_name = 'museum_total')) *100));
   
 -- Percent museums with phone?
-insert into collections (query_name, value) values ('museum_with_phone_pct', (((select value from collections where query_name = 'museum_with_phone_total')/(select value from collections where query_name = 'museum_total')) *100));
+insert into collections (query_name, value) values ('museum_with_phone_pct', (((select value from collections where query_name = 'museum_with_phone_number_total')/(select value from collections where query_name = 'museum_total')) *100));
 
 -- Percent museums with hours?
 insert into collections (query_name, value) values ('museum_with_hours_pct', (((select value from collections where query_name = 'museum_with_hours_total')/(select value from collections where query_name = 'museum_total')) *100));
