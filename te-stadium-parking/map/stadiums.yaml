@@ -23,6 +23,9 @@ labels-global:
     - &text_visible_shields           false
     - &text_visible_exits             false
 
+zinc-light-gray-colors:
+    roads:
+        - &service_road2
 sources:
     osm:
         url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-loxxPrQ
