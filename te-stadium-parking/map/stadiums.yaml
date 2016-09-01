@@ -1,7 +1,6 @@
 import: https://raw.githubusercontent.com/tangrams/zinc-style/gh-pages/zinc-style.yaml
 
-# This style highlights unnamed features of the selected types in red.
-# Search for "nameless" to find the featured layer,
+# This style highlights stadiums, nearby parking, and nearby parking aisles.
 # The basemap is Zinc, a light gray style optimized for data visualization overlays.  
 # Give OpenStreetMap data a professional basemap skin using the Tangram graphics  
 # library and Mapzen's versatile Vector Tiles. 
