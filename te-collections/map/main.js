@@ -107,9 +107,10 @@ map = (function() {
             };
 
             scene.getFeatureAt(pixel).then(function(selection) {
+                popup.style.visibility = 'hidden';
+                
                 if (!selection || selection.feature == null || selection.feature.properties == null) {
                     picking = false;
-                    popup.style.visibility = 'hidden';
                     return;
                 }
                 var properties = selection.feature.properties;
